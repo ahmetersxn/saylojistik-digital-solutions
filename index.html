@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Say Lojistik - Güvenilir Antrepo ve Depolama Çözümleri</title>
+    <title>Say Lojistik | Modern Antrepo ve Lojistik Sanatı</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -20,241 +20,203 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif']
+                        'inter': ['Inter', 'sans-serif']
                     },
                     colors: {
-                        'brand-charcoal': '#2e2e2e',
-                        'brand-dark-gray': '#4d4d4d',
-                        'brand-light-gray': '#f2f2f2',
-                        'brand-red': '#e30613',
-                        'form-blue': '#007bff'
+                        'brand-dark': '#111111',
+                        'brand-gray': '#1c1c1c',
+                        'brand-light-gray': '#a0a0a0',
+                        'brand-white': '#f5f5f5',
+                        'brand-accent': '#007CF0', // Canlı bir mavi vurgu rengi
                     }
                 }
             }
         }
     </script>
     <style>
-        .required-star::after { content: ' *'; color: #e30613; }
-        .form-input:focus { border-color: #e30613; outline: none; box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2); }
+        .required-star::after { content: ' *'; color: #007CF0; }
+        .form-input { background-color: #2a2a2a; border-color: #444; color: #f5f5f5; }
+        .form-input:focus { border-color: #007CF0; outline: none; box-shadow: 0 0 0 2px rgba(0, 124, 240, 0.3); }
+        ::placeholder { color: #666; }
+        /* Scroll animasyonları için temel stiller */
+        .reveal { position: relative; opacity: 0; transform: translateY(50px); transition: all 1s ease-in-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="font-poppins bg-white text-brand-dark-gray" data-lang="tr">
+<body class="font-inter bg-brand-dark text-brand-light-gray" data-lang="tr">
 
-    <header class="bg-white/90 backdrop-blur-sm fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center text-2xl font-bold text-brand-charcoal">
-                <img src="https://placehold.co/150x50/ffffff/2e2e2e?text=SAY+LOJISTIK" alt="Say Lojistik Logo" class="h-10">
+    <header class="bg-brand-dark/80 backdrop-blur-sm fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold text-brand-white tracking-wider">
+                SAY<span class="text-brand-accent">.</span>
             </a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#hakkimizda" class="text-lg hover:text-brand-red transition-colors">Hakkımızda</a>
-                <a href="#hizmetler" class="text-lg hover:text-brand-red transition-colors">Hizmetler</a>
-                <a href="#tesisler" class="text-lg hover:text-brand-red transition-colors">Tesislerimiz</a>
-                <a href="#iletisim" class="text-lg hover:text-brand-red transition-colors">İletişim</a>
-                <button id="open-quote-modal-desktop" class="bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-2 rounded-full transition-all duration-300 hover:scale-105">Teklif Alın</button>
+            <nav class="hidden md:flex items-center space-x-10">
+                <a href="#hakkimizda" class="text-lg hover:text-brand-accent transition-colors">Hakkımızda</a>
+                <a href="#hizmetler" class="text-lg hover:text-brand-accent transition-colors">Hizmetler</a>
+                <a href="#tesisler" class="text-lg hover:text-brand-accent transition-colors">Tesislerimiz</a>
+                <button id="open-quote-modal-desktop" class="bg-brand-accent hover:bg-blue-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300">
+                    Talep Oluştur
+                </button>
             </nav>
-            <div class="flex items-center space-x-4">
-                <button id="mobile-menu-button" class="md:hidden text-brand-charcoal text-2xl"><i class="fas fa-bars"></i></button>
-            </div>
+            <button id="mobile-menu-button" class="md:hidden text-brand-white text-2xl z-50"><i class="fas fa-bars"></i></button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95">
-            <a href="#hakkimizda" class="block text-center py-3 px-4 hover:bg-brand-light-gray transition-colors">Hakkımızda</a>
-            <a href="#hizmetler" class="block text-center py-3 px-4 hover:bg-brand-light-gray transition-colors">Hizmetler</a>
-            <a href="#tesisler" class="block text-center py-3 px-4 hover:bg-brand-light-gray transition-colors">Tesislerimiz</a>
-            <a href="#iletisim" class="block text-center py-3 px-4 hover:bg-brand-light-gray transition-colors">İletişim</a>
-            <button id="open-quote-modal-mobile" class="w-full text-center py-4 px-4 bg-brand-red text-white font-semibold">Teklif Alın</button>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-brand-dark flex flex-col items-center justify-center space-y-8">
+            <a href="#hakkimizda" class="text-3xl font-bold hover:text-brand-accent transition-colors">Hakkımızda</a>
+            <a href="#hizmetler" class="text-3xl font-bold hover:text-brand-accent transition-colors">Hizmetler</a>
+            <a href="#tesisler" class="text-3xl font-bold hover:text-brand-accent transition-colors">Tesislerimiz</a>
+            <button id="open-quote-modal-mobile" class="bg-brand-accent hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full transition-all text-xl mt-4">Talep Oluştur</button>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="relative w-full h-screen flex items-center justify-center text-white text-center overflow-hidden">
+        <section id="hero" class="relative w-full h-screen flex items-center overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://placehold.co/1920x1080/4d4d4d/ffffff?text=Antrepo+Görseli" alt="Antrepo Arka Plan" class="w-full h-full object-cover opacity-80">
-                <div class="absolute inset-0 bg-black/50"></div>
+                <img src="https://placehold.co/1920x1080/111111/f5f5f5?text=Lojistik+Operasyon" alt="Modern Antrepo" class="w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/50"></div>
             </div>
-            <div class="container mx-auto px-6 z-10">
-                <h1 class="text-4xl md:text-7xl font-extrabold mb-4 leading-tight drop-shadow-lg">Gümrüklü Antrepo ve Serbest Depo Çözümleri</h1>
-                <p class="text-lg md:text-2xl mb-8 font-medium max-w-4xl mx-auto drop-shadow-md">Modern tesislerimiz, teknolojik altyapımız ve uzman ekibimizle lojistik ihtiyaçlarınıza güvenilir çözümler sunuyoruz.</p>
-                <button id="open-quote-modal-hero" class="bg-brand-red hover:bg-red-700 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 hover:scale-105 shadow-xl shadow-red-500/30 text-lg">Ardiye Talebi Oluşturun</button>
-            </div>
-        </section>
-
-        <section id="hakkimizda" class="py-20 bg-brand-light-gray">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <img src="https://placehold.co/600x400/2e2e2e/ffffff?text=Firma+Binasi" alt="Firma Hakkında" class="rounded-xl shadow-lg w-full">
-                </div>
-                <div class="md:w-1/2 text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-brand-charcoal">Say Lojistik Hakkında</h2>
-                    <p class="text-brand-dark-gray leading-relaxed mb-4">Sektöre adım attığımız günden beri vizyonumuz, müşterilerimize en verimli ve güvenilir lojistik çözümlerini sunmaktır. Misyonumuz, teknoloji ve uzmanlığı birleştirerek tedarik zinciri süreçlerinizi basitleştirmek ve maliyetlerinizi optimize etmektir.</p>
-                    <p class="text-brand-dark-gray leading-relaxed">Gümrük ve Ticaret Bakanlığı tarafından yetkilendirilmiş tesislerimizde, her projeye özel bir ilgiyle yaklaşarak ithalat ve ihracat operasyonlarınızın sorunsuz ilerlemesini sağlıyoruz.</p>
-                </div>
+            <div class="container mx-auto px-6 z-10 text-center">
+                <h1 class="text-5xl md:text-8xl font-black text-brand-white mb-6 leading-tight drop-shadow-lg">
+                    Lojistiğin Geleceği<span class="text-brand-accent">.</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 font-light max-w-4xl mx-auto text-brand-light-gray">Gümrüklü antrepo ve serbest depolamada, teknoloji ve güvenliği birleştiren yeni nesil çözümler.</p>
+                <button id="open-quote-modal-hero" class="bg-brand-accent hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full transition-transform duration-300 hover:scale-105 shadow-2xl shadow-blue-500/20 text-lg">
+                    Hizmet Talep Edin
+                </button>
             </div>
         </section>
 
-        <section id="hizmetler" class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-brand-charcoal">Ana Hizmetlerimiz</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="bg-brand-light-gray p-8 rounded-lg shadow-lg border-t-4 border-brand-red">
-                        <i class="fas fa-warehouse text-5xl text-brand-red mb-6"></i>
-                        <h3 class="text-2xl font-bold text-brand-charcoal mb-4">Gümrüklü Antrepo</h3>
-                        <p class="text-brand-dark-gray mb-6">İthalat vergileri ve ticaret politikası önlemlerine tabi tutulmamış eşyanın, gümrük gözetimi altındayken depolandığı A Tipi Genel Antrepomuzda hizmet veriyoruz.</p>
-                        <ul class="text-left space-y-2">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Vergilerin Ertelenmesi Avantajı</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Elleçleme, Etiketleme, Ambalajlama</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Her Türlü Kuru Yük Depolama</li>
-                        </ul>
-                    </div>
-                    <div class="bg-brand-light-gray p-8 rounded-lg shadow-lg border-t-4 border-brand-red">
-                        <i class="fas fa-box-open text-5xl text-brand-red mb-6"></i>
-                        <h3 class="text-2xl font-bold text-brand-charcoal mb-4">Serbest Depo</h3>
-                        <p class="text-brand-dark-gray mb-6">Gümrükleme işlemleri tamamlanmış, vergileri ödenmiş ürünleriniz için esnek ve hızlı lojistik çözümleri sunuyoruz. Ürünleriniz buradan doğrudan dağıtıma çıkabilir.</p>
-                        <ul class="text-left space-y-2">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Hızlı Erişim ve Esnek Stok Yönetimi</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Sipariş Hazırlama ve Dağıtım</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>Katma Değerli Hizmetler (KDH)</li>
-                        </ul>
-                    </div>
+        <section id="hakkimizda" class="py-24 bg-brand-gray">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-brand-white mb-6">Biz Kimiz?</h2>
+                    <p class="text-lg leading-relaxed mb-4">Sektördeki tecrübemizi, modern teknoloji ve yenilikçi bir vizyonla birleştiriyoruz. Amacımız, karmaşık lojistik süreçlerinizi basit, şeffaf ve verimli bir operasyona dönüştürmektir.</p>
+                    <p class="text-lg leading-relaxed">Güvenilirliğimiz, Gümrük Bakanlığı yetkilerimiz ve uluslararası kalite standartlarımızla tescillenmiştir. İş ortağınız olarak, başarınız için çalışıyoruz.</p>
+                </div>
+                <div class="reveal">
+                     <img src="https://placehold.co/600x700/007CF0/111111?text=SAY" alt="Hakkımızda" class="rounded-lg shadow-2xl w-full h-full object-cover">
                 </div>
             </div>
         </section>
 
-        <section id="tesisler" class="py-20 bg-brand-light-gray">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-brand-charcoal">Tesis ve Fiziksel Özellikler</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-map-marker-alt text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Stratejik Konum</h3>
-                        <p>Tesislerimiz, Ambarlı Limanı ve Halkalı Gümrüğü'ne yakınlığı ile operasyonel kolaylık sağlar.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-ruler-combined text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Geniş Depolama Alanı</h3>
-                        <p>15.000 m² kapalı ve 5.000 m² açık alan ile her türlü depolama ihtiyacınıza cevap veriyoruz.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-shield-alt text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Yüksek Güvenlik</h3>
-                        <p>7/24 CCTV kamera sistemleri, yangın söndürme ve alarm sistemleri ile ürünleriniz güvende.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-laptop-code text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Teknolojik Altyapı</h3>
-                        <p>Gelişmiş Stok Yönetim Sistemi (WMS) ve online takip imkanları ile tam kontrol sizde.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-truck-loading text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Modern Ekipmanlar</h3>
-                        <p>Forklift, reach truck ve hidrolik rampalar ile hızlı ve güvenli yükleme/boşaltma.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <i class="fas fa-certificate text-4xl text-brand-red mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Yetki ve Sertifikalar</h3>
-                        <p>Gümrük Bakanlığı Yetki Belgeleri ve ISO 9001 Kalite Sertifikası ile tescilli hizmet.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="iletisim" class="py-20 bg-brand-charcoal text-white">
-            <div class="container mx-auto px-6 text-center max-w-4xl">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Bize Ulaşın</h2>
-                <p class="text-lg mb-8 max-w-2xl mx-auto">Depolama ve lojistik ihtiyaçlarınız için uzman ekibimizden destek alın. Size en uygun çözümü sunmak için buradayız.</p>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-brand-charcoal text-left">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div>
-                            <h3 class="text-xl font-bold mb-2"><i class="fas fa-phone-alt mr-2 text-brand-red"></i>Telefon</h3>
-                            <p class="text-brand-dark-gray">+90 212 123 45 67</p>
+        <section id="hizmetler" class="py-24 bg-brand-dark">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-brand-white mb-16 reveal">Hizmetlerimiz</h2>
+                <div class="space-y-20">
+                    <div class="grid md:grid-cols-2 gap-16 items-center reveal">
+                        <div class="text-left">
+                            <h3 class="text-3xl font-bold text-brand-white mb-4">Gümrüklü Antrepo</h3>
+                            <p class="text-lg mb-6">A Tipi Genel Antrepomuzda, gümrük vergileri ödenmeden ürünlerinizi güvenle depolayın. Maliyetlerinizi optimize ederken, esnek elleçleme ve etiketleme gibi katma değerli hizmetlerimizden faydalanın.</p>
+                            <span class="text-brand-accent font-semibold text-lg">Vergi Avantajı • Güvenlik • Esneklik</span>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2"><i class="fas fa-envelope mr-2 text-brand-red"></i>E-posta</h3>
-                            <p class="text-brand-dark-gray">info@saylojistik.com.tr</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2"><i class="fas fa-map-marked-alt mr-2 text-brand-red"></i>Adres</h3>
-                            <p class="text-brand-dark-gray">Örnek Mah. Antrepo Cad. No:1, İstanbul, Türkiye</p>
-                        </div>
+                        <img src="https://placehold.co/600x400/1c1c1c/f5f5f5?text=Gümrüklü+Alan" alt="Gümrüklü Antrepo" class="rounded-lg shadow-xl w-full">
                     </div>
-                    <div class="text-center mt-8 border-t pt-6">
-                         <h3 class="text-xl font-bold mb-4">Sıkça Sorulan Sorular ve Canlı Destek</h3>
-                         <p class="text-brand-dark-gray mb-4">Hizmetlerimizle ilgili aklınıza takılan sorular için SSS sayfamızı ziyaret edebilir veya WhatsApp hattımızdan anında destek alabilirsiniz.</p>
-                         <a href="#" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-whatsapp mr-2"></i>Canlı Destek</a>
+                     <div class="grid md:grid-cols-2 gap-16 items-center reveal">
+                        <img src="https://placehold.co/600x400/1c1c1c/f5f5f5?text=Serbest+Depo" alt="Serbest Depo" class="rounded-lg shadow-xl w-full hidden md:block">
+                         <div class="text-left md:text-right">
+                            <h3 class="text-3xl font-bold text-brand-white mb-4">Serbest Depo</h3>
+                            <p class="text-lg mb-6">Gümrük işlemleri tamamlanmış ürünleriniz için hızlı ve modern depolama alanları. Sipariş hazırlama, stok yönetimi ve yurt içi dağıtım hizmetlerimizle tedarik zincirinizi güçlendirin.</p>
+                            <span class="text-brand-accent font-semibold text-lg">Hız • Stok Kontrolü • Dağıtım</span>
+                        </div>
+                         <img src="https://placehold.co/600x400/1c1c1c/f5f5f5?text=Serbest+Depo" alt="Serbest Depo" class="rounded-lg shadow-xl w-full md:hidden">
                     </div>
                 </div>
-            </div>
+             </div>
+        </section>
+        
+        <section id="tesisler" class="py-24 bg-brand-gray">
+             <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center text-brand-white mb-16 reveal">Üstün Altyapı</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-brand-dark p-8 rounded-lg border border-transparent hover:border-brand-accent transition-all duration-300 reveal">
+                        <i class="fas fa-map-marker-alt text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-white mb-2">Stratejik Konum</h3>
+                        <p>Liman ve gümrüklere dakikalar içinde ulaşım sağlayan, lojistik maliyetlerinizi düşüren lokasyon.</p>
+                    </div>
+                    <div class="bg-brand-dark p-8 rounded-lg border border-transparent hover:border-brand-accent transition-all duration-300 reveal">
+                        <i class="fas fa-shield-alt text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-white mb-2">7/24 Güvenlik</h3>
+                        <p>Yeni nesil CCTV, alarm ve yangın söndürme sistemleri ile ürünleriniz her an koruma altında.</p>
+                    </div>
+                    <div class="bg-brand-dark p-8 rounded-lg border border-transparent hover:border-brand-accent transition-all duration-300 reveal">
+                        <i class="fas fa-laptop-code text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold text-brand-white mb-2">Dijital Yönetim</h3>
+                        <p>Gelişmiş WMS ile stoklarınızı anlık olarak online takip edin, operasyonel verimliliği yakalayın.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="iletisim" class="py-24 bg-brand-dark">
+             <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl md:text-5xl font-extrabold text-brand-white mb-6 reveal">İletişime Geçin<span class="text-brand-accent">.</span></h2>
+                 <p class="text-lg max-w-2xl mx-auto mb-10 reveal">Projenize özel çözümler ve rekabetçi teklifler için uzman ekibimizle tanışın.</p>
+                 <div class="flex justify-center items-center space-x-6 reveal">
+                     <a href="tel:+902121234567" class="text-xl hover:text-brand-accent transition-colors"><i class="fas fa-phone-alt mr-2"></i>+90 212 123 45 67</a>
+                     <a href="mailto:info@saylojistik.com.tr" class="text-xl hover:text-brand-accent transition-colors"><i class="fas fa-envelope mr-2"></i>info@saylojistik.com.tr</a>
+                 </div>
+             </div>
         </section>
 
     </main>
 
-    <footer class="bg-brand-dark-gray text-white py-8">
-        <div class="container mx-auto px-6 text-center text-sm">
+    <footer class="bg-brand-gray py-8">
+        <div class="container mx-auto px-6 text-center text-brand-light-gray">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.linkedin.com/company/saylojistik" target="_blank" class="hover:text-brand-red transition-colors text-xl"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" class="hover:text-brand-red transition-colors text-xl"><i class="fab fa-facebook"></i></a>
-                <a href="#" target="_blank" class="hover:text-brand-red transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" class="hover:text-brand-accent transition-colors text-xl"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" class="hover:text-brand-accent transition-colors text-xl"><i class="fab fa-instagram"></i></a>
             </div>
             <p>&copy; 2024 Say Lojistik. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
 
-    <div id="quote-form-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[60] py-10">
-        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-2xl m-4 relative transform transition-all duration-300 scale-95 max-h-full overflow-y-auto">
-            <button id="close-quote-modal" class="absolute top-4 right-4 text-3xl text-brand-dark-gray hover:text-brand-red">&times;</button>
-            <h2 class="text-3xl font-bold text-center mb-6 text-brand-charcoal">Ardiye Talep Formu</h2>
-            
+    <div id="quote-form-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-[60] py-10">
+        <div class="bg-brand-gray p-8 rounded-lg shadow-2xl w-full max-w-2xl m-4 relative transform transition-all duration-300 scale-95 max-h-full overflow-y-auto border border-gray-700">
+            <button id="close-quote-modal" class="absolute top-4 right-4 text-3xl text-brand-light-gray hover:text-white">&times;</button>
+            <h2 class="text-3xl font-bold text-center mb-6 text-brand-white">Ardiye Talep Formu</h2>
             <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
                 <fieldset>
-                    <legend class="text-xl font-semibold mb-4 text-brand-dark-gray border-b pb-2 w-full">Kişisel Bilgiler</legend>
                     <div class="space-y-4">
                         <div>
-                            <label for="sirket" class="block text-sm font-medium text-brand-charcoal required-star">Şirket</label>
-                            <input type="text" id="sirket" name="Sirket" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" required>
+                            <label for="sirket" class="block text-sm font-medium text-brand-light-gray required-star">Şirket</label>
+                            <input type="text" id="sirket" name="Sirket" class="mt-1 w-full px-4 py-3 rounded-md border form-input" required>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label for="ad" class="block text-sm font-medium text-brand-charcoal required-star">Ad</label>
-                                <input type="text" id="ad" name="Ad" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" required>
+                                <label for="ad" class="block text-sm font-medium text-brand-light-gray required-star">Ad</label>
+                                <input type="text" id="ad" name="Ad" class="mt-1 w-full px-4 py-3 rounded-md border form-input" required>
                             </div>
                             <div>
-                                <label for="soyad" class="block text-sm font-medium text-brand-charcoal required-star">Soyad</label>
-                                <input type="text" id="soyad" name="Soyad" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" required>
+                                <label for="soyad" class="block text-sm font-medium text-brand-light-gray required-star">Soyad</label>
+                                <input type="text" id="soyad" name="Soyad" class="mt-1 w-full px-4 py-3 rounded-md border form-input" required>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label for="email" class="block text-sm font-medium text-brand-charcoal required-star">E-posta</label>
-                                <input type="email" id="email" name="E-posta" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" required>
+                                <label for="email" class="block text-sm font-medium text-brand-light-gray required-star">E-posta</label>
+                                <input type="email" id="email" name="E-posta" class="mt-1 w-full px-4 py-3 rounded-md border form-input" required>
                             </div>
                             <div>
-                                <label for="telefon" class="block text-sm font-medium text-brand-charcoal required-star">Telefon</label>
-                                <input type="tel" id="telefon" name="Telefon" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" required>
+                                <label for="telefon" class="block text-sm font-medium text-brand-light-gray required-star">Telefon</label>
+                                <input type="tel" id="telefon" name="Telefon" class="mt-1 w-full px-4 py-3 rounded-md border form-input" required>
                             </div>
                         </div>
                     </div>
                 </fieldset>
-
                 <fieldset>
-                    <legend class="text-xl font-semibold mb-4 text-brand-dark-gray border-b pb-2 w-full">Talep Detayları</legend>
                     <div>
-                        <label for="talep-detay" class="block text-sm font-medium text-brand-charcoal required-star">Talep Edilen Ardiye İle İlgili Bilgi Metni</label>
-                        <textarea id="talep-detay" name="Talep_Detay" rows="5" class="mt-1 w-full px-4 py-2 rounded-md bg-brand-light-gray border border-gray-300 form-input" placeholder="Kap cinsi, Ölçüleri, Yaklaşık Kilo, Serbest Depo, Gümrüklü Depo vb. belirtiniz." required></textarea>
+                        <label for="talep-detay" class="block text-sm font-medium text-brand-light-gray required-star">Talep Detayları</label>
+                        <textarea id="talep-detay" name="Talep_Detay" rows="5" class="mt-1 w-full px-4 py-3 rounded-md border form-input" placeholder="Kap cinsi, ölçüler, yaklaşık kilo, talep edilen hizmet (Serbest/Gümrüklü Depo) vb. belirtiniz." required></textarea>
                     </div>
                 </fieldset>
-
-                <fieldset>
-                    <legend class="text-xl font-semibold mb-4 text-brand-dark-gray border-b pb-2 w-full">Onay ve Güvenlik</legend>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-brand-red border-gray-300 rounded focus:ring-brand-red" required>
-                            <label for="terms" class="ml-3 text-sm text-brand-charcoal required-star">Bu <a href="#" class="text-form-blue hover:underline">şartları ve koşulları</a> kabul ediyorum.</label>
-                        </div>
-                        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                <fieldset class="space-y-4">
+                    <div class="flex items-start">
+                        <input id="terms" name="terms" type="checkbox" class="h-4 w-4 mt-1 bg-brand-gray border-gray-500 text-brand-accent focus:ring-brand-accent" required>
+                        <label for="terms" class="ml-3 text-sm text-brand-light-gray required-star"><a href="#" class="text-brand-accent hover:underline">Şartlar ve koşulları</a> kabul ediyorum.</label>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY" data-theme="dark"></div>
                 </fieldset>
-                
                 <div>
-                    <button type="submit" class="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-red-500/30">
+                    <button type="submit" class="w-full bg-brand-accent hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-full transition-all duration-300">
                         Başvuruyu Gönder
                     </button>
                 </div>
@@ -265,6 +227,7 @@
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuButton.querySelector('i');
         const quoteFormModal = document.getElementById('quote-form-modal');
         const openModalButtons = [
             document.getElementById('open-quote-modal-desktop'),
@@ -274,21 +237,22 @@
         const closeModalButton = document.getElementById('close-quote-modal');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        openModalButtons.forEach(button => {
-            if (button) {
-                button.addEventListener('click', () => {
-                    document.body.style.overflow = 'hidden';
-                    quoteFormModal.classList.remove('hidden');
-                    quoteFormModal.classList.add('flex');
-                    setTimeout(() => {
-                        quoteFormModal.querySelector('div').classList.remove('scale-95');
-                    }, 10);
-                });
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            if (isHidden) {
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            } else {
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
             }
         });
+
+        function openModal() {
+            document.body.style.overflow = 'hidden';
+            quoteFormModal.classList.remove('hidden');
+            quoteFormModal.classList.add('flex');
+            setTimeout(() => { quoteFormModal.querySelector('div').classList.remove('scale-95'); }, 10);
+        }
 
         function closeModal() {
             quoteFormModal.querySelector('div').classList.add('scale-95');
@@ -299,17 +263,28 @@
             }, 300);
         }
 
-        if (closeModalButton) {
-            closeModalButton.addEventListener('click', closeModal);
-        }
-
-        if (quoteFormModal) {
-            quoteFormModal.addEventListener('click', (event) => {
-                if (event.target === quoteFormModal) {
-                    closeModal();
+        openModalButtons.forEach(button => {
+            if (button) button.addEventListener('click', openModal);
+        });
+        
+        if (closeModalButton) closeModalButton.addEventListener('click', closeModal);
+        if (quoteFormModal) quoteFormModal.addEventListener('click', (event) => {
+            if (event.target === quoteFormModal) closeModal();
+        });
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { // 100px before it's in view
+                    el.classList.add('active');
                 }
             });
-        }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger on load
     </script>
 </body>
 </html>
